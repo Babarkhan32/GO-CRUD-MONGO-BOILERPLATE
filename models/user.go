@@ -1,9 +1,11 @@
 package models
 
 type User struct {
-	Name string `json:"name" bson:"user_name"`
-	Age int `json:"age" bson:"user_age"`
-	Address `json:"address" bson:"user_address"`
+	Email string `json:"email" bson:"email"`
+	Password string `json:"password" bson:"password"`
+	Name string `json:"name" bson:"name"`
+	Age int `json:"age" bson:"age"`
+	Address `json:"address" bson:"address"`
 }
 
 type Address struct {
@@ -11,3 +13,4 @@ type Address struct {
 	City  string `json:"city" bson:"city"`
 	Pincode int `json:"pincode" bson:"pincode"`
 }
+

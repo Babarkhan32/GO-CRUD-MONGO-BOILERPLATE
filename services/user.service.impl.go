@@ -71,7 +71,16 @@ func (u *UserServiceImpl) UpdateUser(user *models.User) error {
 	return nil
 }
 func (u *UserServiceImpl) DeleteUser(name *string) error {
-	filter := bson.D{bson.E{Key: "user_name", Value: name}}
+	filter := bson.D{bson.E{Key: "name", Value: name}}
+	result, _ := u.userCollection.DeleteOne(u.ctx, filter)
+	if result.DeletedCount != 1 {
+		return errors.New("NO MATCH FOUND")
+	}
+	return nil
+}
+
+func (u *UserServiceImpl) Login(name *string, password *string) error {
+	filter := bson.D{bson.E{Key: "name", Value: name}}
 	result, _ := u.userCollection.DeleteOne(u.ctx, filter)
 	if result.DeletedCount != 1 {
 		return errors.New("NO MATCH FOUND")
