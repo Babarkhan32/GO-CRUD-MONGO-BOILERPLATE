@@ -3,7 +3,6 @@ package services
 import (
 	"context"
 
-
 	"exmaple.com/job-x-apis/models"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -21,7 +20,6 @@ func NewAuthService(userCollection *mongo.Collection, ctx context.Context) AuthS
 	}
 }
 
-
 func (u *AuthServiceImpl) Login(credentials *models.Credentials) (*models.User, error) {
 	var user *models.User
 	query := bson.D{
@@ -34,4 +32,8 @@ func (u *AuthServiceImpl) Login(credentials *models.Credentials) (*models.User, 
 	}
 	err := u.userCollection.FindOne(u.ctx, query).Decode(&user)
 	return user, err
+}
+
+func (u *AuthServiceImpl) CheckStatus() (string) {
+	return ""
 }
